@@ -39,6 +39,10 @@ function maximoComunDivisor ($primero, $segundo): int{
     return $max;
 }
 
+function sonPrimosRelativos($primero, $segundo){
+    return (maximoComunDivisor($primero, $segundo) == 1)? true : false;
+}
+
 try{
     //Los dos valores que vamos a usar para comprobar las funciones
     $primero = 48;
@@ -52,7 +56,8 @@ try{
 
     //Si los datos no son válidos, lanzamos la excepción
     if(is_numeric($primero) && is_numeric($segundo)){
-        echo maximoComunDivisor($primero, $segundo);
+        echo maximoComunDivisor($primero, $segundo) . "    -    \n";
+        echo $primero . ((sonPrimosRelativos($primero, $segundo))?"": " NO") . " es primo relativo de " . $segundo;
     } else {
         throw new ValueError;
     }
