@@ -4,7 +4,7 @@ declare(strict_types=1);
 //Definimos las constantes necesarias para las conversiones
 define('FACTOR_9_5', 9.0 / 5.0);
 define('FACTOR_5_9', 5.0 / 9.0);
-define('KELVIN_OFFSET', 273.15);
+define('DESPLAZAMIENTO_KELVIN', 273.15);
 
 //Una función que convierte Celsius a Fahrenheit
 function celsiusAFahrenheit(float $c): float{
@@ -19,7 +19,7 @@ function celsiusAKelvin(float $c): float{
     error_log("[" . __FUNCTION__ . "] L" . __LINE__ . " - C->K: {$c}");
 
     //Devolvemos el valor convertido
-    return $c + KELVIN_OFFSET;
+    return $c + DESPLAZAMIENTO_KELVIN;
 }
 
 //Una función que convierte Fahrenheit a Celsius
@@ -35,13 +35,13 @@ function kelvinACelsius(float $k): float{
     error_log("[" . __FUNCTION__ . "] L" . __LINE__ . " - K->C: {$k}");
 
     //Devolvemos el valor convertido
-    return $k - KELVIN_OFFSET;
+    return $k - DESPLAZAMIENTO_KELVIN;
 }
 
 //Una función que convierte entre diferentes unidades de temperatura
-function convertirTemperatura(float $valor, string $from, string $cambioA): float{
+function convertirTemperatura(float $valor, string $cambioDe, string $cambioA): float{
     //
-    $inicio = mb_strtolower(trim($from));
+    $inicio = mb_strtolower(trim($cambioDe));
     $final = mb_strtolower(trim($cambioA));
 
     //Primero pasamos de unidad origen a Celsius
@@ -59,8 +59,8 @@ function convertirTemperatura(float $valor, string $from, string $cambioA): floa
             $celsius = kelvinACelsius($valor);
             break;
         default: //Si la unidad no es válida, lanzamos una excepción
-            error_log("[convertirTemperatura] L" . __LINE__ . " - Unidad de origen desconocida: {$from}");
-            throw new UnexpectedValueException("Unidad de origen desconocida: {$from}");
+            error_log("[convertirTemperatura] L" . __LINE__ . " - Unidad de origen desconocida: {$cambioDe}");
+            throw new UnexpectedValueException("Unidad de origen desconocida: {$cambioDe}");
     }
 
     //Y luego de Celsius a unidad destino
