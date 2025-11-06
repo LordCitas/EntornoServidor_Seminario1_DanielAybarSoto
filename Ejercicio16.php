@@ -1,6 +1,6 @@
 <?php
 //Función para comparar los elementos de dos arrays
-function productoElementosArray($array){
+function productoElementosArray($array): int{
     //Inicializamos el entero a devolver
     $res = 1;
 
@@ -18,7 +18,7 @@ function productoElementosArray($array){
 }
 
 //Función para imprimir un array
-function imprimirArray($array){
+function imprimirArray($array): void{
     //una variable que imprime un salto de línea adecuado según el entorno
     $nl = (php_sapi_name() === 'cli') ? PHP_EOL : "<br>\n";
     $longitud = count($array) - 1;
@@ -35,7 +35,7 @@ function imprimirArray($array){
 }
 
 //Definimos y mostramos el array que vamos a usar
-$array = [1, 2, 3, 4, 5];
+$array = [];
 imprimirArray($array);
 
 //Llamamos a la función de comparación dentro de un bloque try-catch
@@ -48,7 +48,7 @@ try{
     }
 //Excepciones que vamos a controlar
 }catch(LengthException $e){
-    echo "El array debe tener al menos un elemento" . $e->getMessage();
+    echo "El array debe tener al menos un elemento";
 }catch(TypeError $e){
-    echo "Se ha encontrado un valor no entero en el array" . $e->getMessage();
+    echo "Se ha encontrado un valor no entero en el array";
 }
