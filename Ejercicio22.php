@@ -43,7 +43,7 @@ function esNumeroPerfecto(int $numero): bool{
 $nl = (php_sapi_name() === 'cli') ? PHP_EOL : "<br>\n";
 
 //Definimos el número que vamos a comprobar, y lo mostramos
-$numero = 6;
+$numero = 7;
 echo "El número introducido es: " . $numero . $nl;
 
 //Llamamos a la función dentro de un bloque try-catch
