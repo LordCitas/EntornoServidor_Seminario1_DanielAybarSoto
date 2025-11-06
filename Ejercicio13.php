@@ -14,7 +14,7 @@ try{
     $numero = "hola";
     */
 
-    if(count(preg_split('/[#.]/', $cadena)) == )
+    if(count(preg_split('/[#]/', $cadena)) > 2 )
 
     $separacion = preg_split('/[#.]/', $cadena);
 
