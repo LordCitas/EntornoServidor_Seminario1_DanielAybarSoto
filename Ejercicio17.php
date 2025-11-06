@@ -1,15 +1,15 @@
 <?php
-//Función para comparar los elementos de dos arrays
-function productoElementosArray($array): int{
-    //Inicializamos el entero a devolver
-    $res = 1;
+//Función para seleccionar los elementos pares del array
+function paresElementosArray($array): array{
+    //Inicializamos el array a devolver
+    $res = [];
 
-    //Un bucle que recorre los elementos de los arrays
+    //Un bucle que recorre los elementos del array
     foreach($array as $elemento){
-        if(!is_int($elemento)){
+        if(is_nan($elemento)){
             throw new TypeError;
-        } else {
-            $res *= $elemento;
+        } else if(($elemento % 2 == 0)){
+            array_push($res, $elemento);
         }
     }
     //Devolvemos el array resultado
@@ -35,15 +35,17 @@ function imprimirArray($array): void{
 }
 
 //Definimos y mostramos el array que vamos a usar
-$array = [];
+$array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+echo "El array introducido es: ";
 imprimirArray($array);
 
-//Llamamos a la función de comparación dentro de un bloque try-catch
+//Llamamos a la función de selección dentro de un bloque try-catch
 try{
     if(count($array) == 0){
         throw new LengthException;
     } else {
-        $resultado = productoElementosArray($array);
+        $resultado = paresElementosArray($array);
+        echo "El array con los números pares del original es: ";
         imprimirArray($resultado);
     }
 //Excepciones que vamos a controlar
